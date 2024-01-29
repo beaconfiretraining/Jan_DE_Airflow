@@ -22,7 +22,7 @@ SNOWFLAKE_STAGE = 's3_stage_testing'
 with DAG(
     "s3_data_copy_test",
     start_date=datetime(2022, 11, 28),
-    schedule_interval='0 7 * * *',
+    schedule_interval='0 5 * * *',
     default_args={'snowflake_conn_id': SNOWFLAKE_CONN_ID},
     tags=['beaconfire'],
     catchup=False,

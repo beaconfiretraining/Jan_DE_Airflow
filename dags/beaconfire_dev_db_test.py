@@ -9,12 +9,14 @@ from airflow.providers.snowflake.operators.snowflake import SnowflakeOperator
 
 
 SNOWFLAKE_CONN_ID = 'snowflake_conn'
-SNOWFLAKE_DATABASE = 'ETL_AF'
-SNOWFLAKE_SCHEMA = 'DEV_DB'
+SNOWFLAKE_DATABASE = 'AIRFLOW0124'
+SNOWFLAKE_SCHEMA = 'BF_DEV'
 
-SNOWFLAKE_ROLE = 'BF_DEVELOPER'
-SNOWFLAKE_WAREHOUSE = 'BF_ETL'
-#SNOWFLAKE_STAGE = 'beaconfire_stage'
+SNOWFLAKE_ROLE = 'BF_DEVELOPER0124'
+SNOWFLAKE_WAREHOUSE = 'BF_ETL0124'
+
+#SNOWFLAKE_STAGE = 's3_stage_testing'
+
 
 
 SNOWFLAKE_SAMPLE_TABLE = 'airflow_testing'

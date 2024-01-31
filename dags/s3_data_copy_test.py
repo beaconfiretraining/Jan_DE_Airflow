@@ -10,13 +10,13 @@ from airflow.providers.snowflake.transfers.s3_to_snowflake import S3ToSnowflakeO
 
 
 SNOWFLAKE_CONN_ID = 'snowflake_conn'
-SNOWFLAKE_DATABASE = 'ETL_AF'
-SNOWFLAKE_SCHEMA = 'DEV_DB'
+SNOWFLAKE_DATABASE = 'AIRFLOW0124'
+SNOWFLAKE_SCHEMA = 'BF_DEV'
 
-SNOWFLAKE_ROLE = 'BF_DEVELOPER'
-SNOWFLAKE_WAREHOUSE = 'BF_ETL'
+SNOWFLAKE_ROLE = 'BF_DEVELOPER0124'
+SNOWFLAKE_WAREHOUSE = 'BF_ETL0124'
 
-SNOWFLAKE_STAGE = 's3_stage_trans_order'
+SNOWFLAKE_STAGE = 's3_stage_testing'
 #S3_FILE_PATH = 'product_order_trans_07152022.csv'
 
 with DAG(

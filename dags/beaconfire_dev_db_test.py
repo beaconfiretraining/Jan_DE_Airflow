@@ -8,7 +8,7 @@ from airflow.providers.snowflake.operators.snowflake import SnowflakeOperator
 
 
 
-SNOWFLAKE_CONN_ID = 'snowflake_conn'
+SNOWFLAKE_CONN_ID = 'snowflake_conn' #
 SNOWFLAKE_DATABASE = 'AIRFLOW0124'
 SNOWFLAKE_SCHEMA = 'BF_DEV'
 

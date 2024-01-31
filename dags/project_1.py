@@ -30,7 +30,7 @@ with DAG(
 
     copy_into_prestg = S3ToSnowflakeOperator(
         task_id='prestg_s3_to_sn_group5',
-        s3_keys=['weather_Group5_{{ ds[5:7]+ds[8:10]+ds[0:4] }}.csv'],
+        s3_keys=['weather_Group5_{{ ds[0:4]+ds[5:7]+ds[8:10] }}.csv'],
         table='prestage_weather_group5',
         schema=SNOWFLAKE_SCHEMA,
         stage=SNOWFLAKE_STAGE,

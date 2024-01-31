@@ -24,7 +24,7 @@ SNOWFLAKE_SCHEMA = 'BF_DEV'
 SNOWFLAKE_ROLE = 'BF_DEVELOPER0124'
 SNOWFLAKE_WAREHOUSE = 'BF_ETL0124'
 
-SNOWFLAKE_STAGE = 's3_stage_testing'
+SNOWFLAKE_STAGE = 'S3_STAGE_TRANS_ORDER'
 #S3_FILE_PATH = 'product_order_trans_07152022.csv'
 
 with DAG(
@@ -37,7 +37,7 @@ with DAG(
 ) as dag:
 
     copy_into_prestg = S3ToSnowflakeOperator(
-        task_id='prestg_product_order_trans',
+        task_id='prestg_product_order_trans_group2',
         s3_keys=['product_order_trans_group2_{{ ds[5:7]+ds[8:10]+ds[0:4] }}.csv'],
         table='prestg_product_order_trans_group2',
         schema=SNOWFLAKE_SCHEMA,

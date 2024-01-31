@@ -33,11 +33,11 @@ with DAG(
     schedule_interval='0 5 * * *',
     default_args={'snowflake_conn_id': SNOWFLAKE_CONN_ID},
     tags=['beaconfire'],
-    catchup=True,
+    catchup=False,
 ) as dag:
 
     copy_into_prestg = S3ToSnowflakeOperator(
-        task_id='prestg_product_order_trans_group2',
+        task_id='prestg_product_order_trans',
         s3_keys=['product_order_trans_group2_{{ ds[5:7]+ds[8:10]+ds[0:4] }}.csv'],
         table='prestg_product_order_trans_group2',
         schema=SNOWFLAKE_SCHEMA,

@@ -25,7 +25,7 @@ SNOWFLAKE_STAGE = 'S3_STAGE_TRANS_ORDER'
 with DAG(
     "s3_to_snowflake_group2_test",
     start_date=datetime(2024, 1, 29),
-    schedule_interval='0 6 * * *', # set to 6AM
+    schedule_interval='0 1 * * *', # set to 6AM
     default_args={'snowflake_conn_id': SNOWFLAKE_CONN_ID},
     tags=['beaconfire'],
     catchup=True, # keep running

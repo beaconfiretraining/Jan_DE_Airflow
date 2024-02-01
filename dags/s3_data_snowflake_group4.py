@@ -16,7 +16,7 @@ SNOWFLAKE_ROLE = 'BF_DEVELOPER0124'
 SNOWFLAKE_WAREHOUSE = 'BF_ETL0124'
 
 SNOWFLAKE_STAGE = 'S3_STAGE_TRANS_ORDER' 
-# S3_FILE_PATH = 'transactions_group4_20240130.csv' 
+S3_FILE_PATH = 'transactions_group4_20240130.csv'
 
 with DAG(
     "s3_data_snowflake_group4",

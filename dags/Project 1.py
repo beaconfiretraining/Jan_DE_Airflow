@@ -25,7 +25,7 @@ SNOWFLAKE_STAGE = 'S3_STAGE_TRANS_ORDER'
 with DAG(
     "s3_to_snowflake_group2",
     start_date=datetime(2022, 11, 28),
-    schedule_interval='0 5 * * *', #next run 01/31/5:00
+    schedule_interval='0 17 * * *', #next run 01/31/17:00
     default_args={'snowflake_conn_id': SNOWFLAKE_CONN_ID},
     tags=['beaconfire'],
     catchup=False,
@@ -34,9 +34,9 @@ with DAG(
     copy_into_prestg = S3ToSnowflakeOperator(
         task_id='prestg_product_order_trans_group2',
         #s3_keys=['product_order_trans_group2_{{ ds[5:7]+ds[8:10]+ds[0:4] }}.csv'],
-        s3_keys=['product_order_trans_group2_01302024.csv',
-                 'product_order_trans_group2_01312024.csv',
-                 'product_order_trans_group2_02012024.csv'],
+        s3_keys=['product_order_trans_group2_20240130.csv',
+                 'product_order_trans_group2_20240131.csv',
+                 'product_order_trans_group2_20240201.csv'],
         table='prestg_product_order_trans_group2',
         schema=SNOWFLAKE_SCHEMA,
         stage=SNOWFLAKE_STAGE,

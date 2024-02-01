@@ -32,10 +32,10 @@ with DAG(
 
         # run this to add previous data
         # s3_keys=[ 'transactions_group4_20240130.csv' ],
-        s3_keys=[ 'transactions_group4_20240131.csv' ],
+        # s3_keys=[ 'transactions_group4_20240131.csv' ],
 
         # then run this make the pipeline keep running when new data coming
-        # s3_keys=['transactions_group4_{{ ds[0:4]+ds[5:7]+ds[8:10] }}.csv'],
+        s3_keys=['transactions_group4_{{ ds[0:4]+ds[5:7]+ds[8:10] }}.csv'],
 
         table='PRESTAGE_TRANSACTIONS_GROUP4', 
         schema=SNOWFLAKE_SCHEMA,

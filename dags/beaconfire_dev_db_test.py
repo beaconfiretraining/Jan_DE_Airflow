@@ -24,10 +24,10 @@ DAG_ID = "snowflake2s_group3"
 with DAG(
     DAG_ID,
     start_date=datetime(2024, 1, 31),
-    schedule_interval='30 * * * *',
+    schedule_interval='30 01 * * *',
     default_args={'snowflake_conn_id': SNOWFLAKE_CONN_ID},
     tags=['beaconfire'],
-    catchup=False,
+    catchup=True,
 ) as dag:
     # [START snowflake_example_dag]
     
@@ -39,7 +39,7 @@ with DAG(
        database=SNOWFLAKE_DATABASE,
        schema=SNOWFLAKE_SCHEMA,
        role=SNOWFLAKE_ROLE,
-       split_statements=True,
+    #    split_statements=True,
     )
 
     # [END howto_operator_snowflake]       

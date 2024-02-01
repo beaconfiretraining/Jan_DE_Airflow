@@ -50,5 +50,5 @@ from "US_STOCK_DAILY"."DCCM"."COMPANY_PROFILE";
 alter table  fact_stock_history_group3
 add MODDATE DATE;
 
-INSERT INTO fact_stock_history_group3 (MODDATE)
-VALUES (sysdate());
+INSERT INTO fact_stock_history_group3 (SYMBOL,MODDATE)
+VALUES ('Test', sysdate());

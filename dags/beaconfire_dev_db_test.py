@@ -23,7 +23,7 @@ DAG_ID = "snowflake2s_group3"
 
 with DAG(
     DAG_ID,
-    start_date=datetime(2021, 1, 1),
+    start_date=datetime(2024, 1, 31),
     schedule_interval='30 * * * *',
     default_args={'snowflake_conn_id': SNOWFLAKE_CONN_ID},
     tags=['beaconfire'],
@@ -42,11 +42,7 @@ with DAG(
        split_statements=True,
     )
 
-    # [END howto_operator_snowflake]
-
-
-    
-        
+    # [END howto_operator_snowflake]       
     snowflake_op_template_file
         
     

@@ -1,7 +1,24 @@
-INSERT INTO FACT_STOCK_HISTORY_GROUP1 (SYMBOL, DATE, OPEN, HIGH, LOW, CLOSE, VOLUME, ADJCLOSE)
-VALUES
-  ('AAPL', '2024-01-31', 150.25000000, 155.00000000, 149.75000000, 153.50000000, 2000000.00000000, 153.25000000),
-  ('GOOGL', '2024-01-31', 1200.00000000, 1210.50000000, 1195.75000000, 1205.00000000, 500000.00000000, 1203.50000000),
-  ('MSFT', '2024-01-31', 200.25000000, 205.00000000, 199.75000000, 203.50000000, 100000.00000000, 203.25000000),
-  ('AMZN', '2024-01-31', 2000.00000000, 2010.50000000, 1995.75000000, 2005.00000000, 300000.00000000, 2003.50000000),
-  ('FB', '2024-01-31', 250.25000000, 255.00000000, 249.75000000, 253.50000000, 150000.00000000, 253.25000000);
+MERGE INTO FACT_STOCK_HISTORY_TEST AS target
+USING US_STOCK_DAILY.DCCM.STOCK_HISTORY_TEST AS source
+ON target.SYMBOL = source.SYMBOL
+and target.date = source.date
+WHEN MATCHED AND (
+  target.open <> source.open OR
+  target.high <> source.high OR
+  target.low <> source.low OR
+  target.close <> source.close OR
+  target.volume <> source.volume OR
+  target.adjclose <> source.adjclose
+  -- Add other columns as needed
+) THEN
+  UPDATE SET
+    target.open = source.open,
+    target.high = source.high,
+    target.low = source.low,
+    target.close = source.close,
+    target.volume = source.volume,
+    target.adjclose = source.adjclose
+    -- Update other columns as needed
+WHEN NOT MATCHED THEN
+  INSERT (SYMBOL, DATE, OPEN, HIGH, LOW, CLOSE, VOLUME, ADJCLOSE)
+  VALUES (source.SYMBOL, source.DATE, source.OPEN, source.HIGH, source.LOW, source.CLOSE, source.VOLUME, source.ADJCLOSE);

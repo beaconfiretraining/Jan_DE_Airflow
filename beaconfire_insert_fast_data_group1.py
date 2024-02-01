@@ -22,7 +22,7 @@ SNOWFLAKE_SAMPLE_TABLE = 'FACT_STOCK_HISTORY_GROUP1'
 # SQL commands
 
 
-DAG_ID = "beaconfire_dev_db_group1"
+DAG_ID = "snowflake_insert_fact_group1"
 # [START howto_operator_snowflake]
 
 with DAG(
@@ -41,7 +41,7 @@ with DAG(
        warehouse=SNOWFLAKE_WAREHOUSE,
         database=SNOWFLAKE_DATABASE,
         schema=SNOWFLAKE_SCHEMA,
-        role=SNOWFLAKE_ROLE
+        role=SNOWFLAKE_ROLE,
     )
 
     # [END howto_operator_snowflake]

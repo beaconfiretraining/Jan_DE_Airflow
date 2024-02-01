@@ -15,24 +15,24 @@ SNOWFLAKE_SCHEMA = 'BF_DEV'
 SNOWFLAKE_ROLE = 'BF_DEVELOPER0124'
 SNOWFLAKE_WAREHOUSE = 'BF_ETL0124'
 
-SNOWFLAKE_STAGE = 'S3_STAGE_TRANS_ORDER' #
+SNOWFLAKE_STAGE = 'S3_STAGE_TRANS_ORDER' 
 # S3_FILE_PATH = 'transactions_group4_20240130.csv' 
 
 with DAG(
     "s3_data_snowflake_group4",
     start_date=datetime(2022, 11, 28),
-    schedule_interval='0 19 * * *', # next run 01/31/19:00
+    schedule_interval='0 6 * * *', # set to 6AM
     default_args={'snowflake_conn_id': SNOWFLAKE_CONN_ID},
     tags=['beaconfire'],
-    catchup=False, # Run only one time for testing
+    catchup=True, # keep running
 ) as dag:
 
     copy_into_prestg = S3ToSnowflakeOperator(
         task_id='PRESTAGE_TRANSACTIONS_GROUP4', 
-        # s3_keys=['product_order_trans_{{ ds[5:7]+ds[8:10]+ds[0:4] }}.csv'],
-        s3_keys=[ 'transactions_group4_20240130.csv', 
-                  'transactions_group4_20240131.csv', 
-                  'transactions_group4_20240201.csv' ],
+        s3_keys=['product_order_trans_{{ ds[0:4]+ds[5:7]+ds[8:10] }}.csv'],
+        # s3_keys=[ 'transactions_group4_20240130.csv', 
+        #          'transactions_group4_20240131.csv', 
+        #          'transactions_group4_20240201.csv' ],
         table='PRESTAGE_TRANSACTIONS_GROUP4', 
         schema=SNOWFLAKE_SCHEMA,
         stage=SNOWFLAKE_STAGE,

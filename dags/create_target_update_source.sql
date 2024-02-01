@@ -1,3 +1,5 @@
+------------------------------------ Create TARGET table------------------------------------
+-- create target table 1
 create or replace table fact_stock_history_group3(
     SYMBOL  VARCHAR(16) PRIMARY KEY,
     DATE  DATE,
@@ -12,6 +14,7 @@ insert into fact_stock_history_group3
 select *
 from "US_STOCK_DAILY"."DCCM"."STOCK_HISTORY";
 
+-- create target table 2
 create or replace table dim_symbols_group3(
     SYMBOL  VARCHAR(16) PRIMARY KEY,
     NAME VARCHAR(256),
@@ -22,6 +25,7 @@ insert into dim_symbols_group3
 select *
 from "US_STOCK_DAILY"."DCCM"."SYMBOLS";
 
+-- create target table 3
 create or replace table dim_company_profile_group3(
     ID NUMBER(38,0)  PRIMARY KEY,
     SYMBOL  VARCHAR(16),
@@ -48,20 +52,39 @@ select *
 from "US_STOCK_DAILY"."DCCM"."COMPANY_PROFILE";
 
 
+------------------------------------ Create SOURCE table------------------------------------
+
+-- create source table 1
 CREATE or replace TABLE "AIRFLOW0124"."BF_DEV"."SOURCE_STOCK_HISTORY_G3" 
 AS
 SELECT 
   * 
 FROM "US_STOCK_DAILY"."DCCM"."STOCK_HISTORY";
 
+-- create source table 2
 CREATE or replace TABLE "AIRFLOW0124"."BF_DEV"."SOURCE_SYMBOLS_G3" 
 AS
 SELECT 
   * 
 FROM "US_STOCK_DAILY"."DCCM"."SYMBOLS";
 
+-- create source table 3
 CREATE or replace TABLE "AIRFLOW0124"."BF_DEV"."SOURCE_COMPANY_PROFILE_G3" 
 AS
 SELECT 
   * 
 FROM "US_STOCK_DAILY"."DCCM"."COMPANY_PROFILE";
+
+------------------------------------ Update SOURCE table------------------------------------
+
+-- update source table 1
+insert into "AIRFLOW0124"."BF_DEV"."SOURCE_SYMBOLS_G3" (SYMBOL)
+VALUES ('TEST2');
+
+-- update source table 2
+insert into "AIRFLOW0124"."BF_DEV"."SOURCE_COMPANY_PROFILE_G3" (ID)
+VALUES (99999);
+
+-- update source table 3
+insert into "AIRFLOW0124"."BF_DEV"."SOURCE_STOCK_HISTORY_G3" (SYMBOL)
+VALUES ('TEST1');

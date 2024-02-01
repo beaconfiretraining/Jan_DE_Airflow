@@ -39,7 +39,7 @@ with DAG(
        database=SNOWFLAKE_DATABASE,
        schema=SNOWFLAKE_SCHEMA,
        role=SNOWFLAKE_ROLE,
-       #split_statements=True,
+       split_statements=True,
     )
 
     # [END howto_operator_snowflake]       

@@ -35,7 +35,7 @@ with DAG(
         task_id='prestg_product_order_trans_group2', 
 
         # then run this make the pipeline keep running when new data coming
-        s3_keys=['product_order_trans_group2_{{ ds[0:4]+ds[5:7]+ds[8:10] }}.csv'],
+        s3_keys=['transactions_group4_{{ ds[0:4]+ds[5:7]+ds[8:10] }}.csv'],
 
         table='prestg_product_order_trans_group2', 
         schema=SNOWFLAKE_SCHEMA,

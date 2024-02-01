@@ -7,8 +7,8 @@ from airflow import DAG
 from airflow.providers.snowflake.operators.snowflake import SnowflakeOperator
 
 SNOWFLAKE_CONN_ID = 'snowflake_conn'
-SNOWFLAKE_DATABASE = 'AIRFLOW0124'
-SNOWFLAKE_SCHEMA = 'BF_DEV'
+SNOWFLAKE_DATABASE = 'US_STOCK_DAILY'
+SNOWFLAKE_SCHEMA = 'DCCM'
 
 SNOWFLAKE_ROLE = 'BF_DEVELOPER0124'
 SNOWFLAKE_WAREHOUSE = 'BF_ETL0124'
@@ -19,7 +19,7 @@ DAG_ID = "group5_project2"
 with DAG(
     DAG_ID,
     start_date=datetime(2024, 1, 31),
-    schedule_interval='59 11 * * *',
+    schedule_interval='0 23 * * *',
     default_args={'snowflake_conn_id': SNOWFLAKE_CONN_ID},
     tags=['beaconfire_group5'],
     catchup=False,
@@ -57,8 +57,8 @@ with DAG(
 
 
     (
-        snowflake_create_1
-        ,snowflake_create_2
+        snowflake_create_1,
+        snowflake_create_2
         >> snowflake_insert_2
     )
     # [END snowflake_example_dag]

@@ -27,7 +27,7 @@ with DAG(
     # create dim table 1: SYMBOLS and set primary key (symbol)
     snowflake_create_dim_tables_1 = SnowflakeOperator(
         task_id='snowflake_create_dim_tables_1',
-        sql='dim_table1.sql',
+        sql='dim_table_1.sql',
         warehouse=SNOWFLAKE_WAREHOUSE,
         database=SNOWFLAKE_DATABASE,
         schema=SNOWFLAKE_SCHEMA,
@@ -36,7 +36,7 @@ with DAG(
     # create dim table 2: COMPANY_PROFILE and set primary key (symbol)
     snowflake_create_dim_tables_2 = SnowflakeOperator(
        task_id='snowflake_create_dim_tables_2',
-       sql='dim_table2.sql',
+       sql='dim_table_2.sql',
        warehouse=SNOWFLAKE_WAREHOUSE,
        database=SNOWFLAKE_DATABASE,
        schema=SNOWFLAKE_SCHEMA,

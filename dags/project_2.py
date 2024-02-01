@@ -18,7 +18,7 @@ DAG_ID = "group5_project2"
 
 with DAG(
     DAG_ID,
-    start_date=datetime(2024, 01, 31),
+    start_date=datetime(2024, 1, 31),
     schedule_interval='59 11 * * *',
     default_args={'snowflake_conn_id': SNOWFLAKE_CONN_ID},
     tags=['beaconfire_group5'],

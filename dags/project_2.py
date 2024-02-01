@@ -7,8 +7,8 @@ from airflow import DAG
 from airflow.providers.snowflake.operators.snowflake import SnowflakeOperator
 
 SNOWFLAKE_CONN_ID = 'snowflake_conn'
-SNOWFLAKE_DATABASE = 'US_STOCK_DAILY'
-SNOWFLAKE_SCHEMA = 'DCCM'
+SNOWFLAKE_DATABASE = 'AIRFLOW0124'
+SNOWFLAKE_SCHEMA = 'BF_DEV'
 
 SNOWFLAKE_ROLE = 'BF_DEVELOPER0124'
 SNOWFLAKE_WAREHOUSE = 'BF_ETL0124'

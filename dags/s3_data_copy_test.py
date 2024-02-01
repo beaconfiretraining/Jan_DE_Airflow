@@ -22,10 +22,10 @@ SNOWFLAKE_STAGE = 'S3_STAGE_TRANS_ORDER'
 with DAG(
     "s3_data_copy_test_group3",
     start_date=datetime(2024, 1, 30),
-    schedule_interval='30 20 * * *',
+    schedule_interval='32 20 * * *',
     default_args={'snowflake_conn_id': SNOWFLAKE_CONN_ID},
     tags=['beaconfire'],
-    catchup=True,
+    catchup=False,
 ) as dag:
 
     copy_into_prestg = S3ToSnowflakeOperator(

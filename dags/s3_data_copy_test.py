@@ -16,13 +16,13 @@ SNOWFLAKE_SCHEMA = 'BF_DEV'
 SNOWFLAKE_ROLE = 'BF_DEVELOPER0124'
 SNOWFLAKE_WAREHOUSE = 'BF_ETL0124'
 
-SNOWFLAKE_STAGE = 'S3_STAGE_TRANS_ORDER'
+SNOWFLAKE_STAGE = 's3_stage_trans_order'
 #S3_FILE_PATH = 'product_order_trans_07152022.csv'
 
 with DAG(
     "s3_data_copy_test_group3",
     start_date=datetime(2024, 1, 30),
-    schedule_interval='32 20 * * *',
+    schedule_interval='03 21 * * *',
     default_args={'snowflake_conn_id': SNOWFLAKE_CONN_ID},
     tags=['beaconfire'],
     catchup=False,

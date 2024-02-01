@@ -40,7 +40,3 @@ with DAG(
     )
 
     copy_into_prestg
-          
-        
-    
-

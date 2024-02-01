@@ -12,8 +12,7 @@ create or replace transient table FACT_STOCK_G2 (
     FOREIGN KEY (SYMBOL) references DIM_SYMBOL_G2 (SYMBOL)
 );
 
-insert into FACT_STOCK_G2 
-values (select concat(symbol,date)as key, * from "US_STOCK_DAILY"."DCCM"."STOCK_HISTORY");
 
-
-
+INSERT INTO FACT_STOCK_G2 
+SELECT concat(symbol,date) as key, * 
+FROM "US_STOCK_DAILY"."DCCM"."STOCK_HISTORY";

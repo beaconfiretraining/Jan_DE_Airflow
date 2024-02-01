@@ -65,12 +65,8 @@ with DAG(
     )
 
     # [END howto_operator_snowflake]
-
-    (
-        snowflake_create_dim_tables_1
-        ,snowflake_create_dim_tables_2
-        ,snowflake_create_fact_tables
-        >> snowflake_insert_fact_tables
-    )
+    snowflake_create_dim_tables_1 >> snowflake_create_fact_tables
+    snowflake_create_dim_tables_2 >> snowflake_create_fact_tables
+    snowflake_create_fact_tables >> snowflake_insert_fact_tables
     # [END snowflake_example_dag]
 

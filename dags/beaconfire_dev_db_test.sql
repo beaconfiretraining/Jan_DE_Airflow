@@ -1,3 +1,18 @@
-CREATE OR REPLACE TRANSIENT TABLE beaconfire_dev_test (name VARCHAR(250), id INT, load_utc_ts datetime);
+create or replace table fact_stock_history_group3 as
+(select * from "US_STOCK_DAILY"."DCCM"."STOCK_HISTORY");
+alter table fact_stock_history_group3
+add primary key (symbol);
 
-INSERT INTO beaconfire_dev_test VALUES ('name', 5, sysdate());
+
+create or replace table dim_symbols_group3 as
+(select * from "US_STOCK_DAILY"."DCCM"."SYMBOLS");
+alter table dim_symbols_group3
+add primary key (symbol)
+foreign key (symbol) references fact_stock_history_group3(symbol);
+
+
+create or replace table dim_company_profile_group3 as
+(select * from "US_STOCK_DAILY"."DCCM"."COMPANY_PROFILE");
+alter table dim_company_profile_group3
+add primary key (ID)
+foreign key (symbol) references fact_stock_history_group3(symbol);;

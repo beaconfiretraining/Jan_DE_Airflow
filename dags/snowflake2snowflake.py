@@ -41,7 +41,7 @@ DAG_ID = "snowflake_to_snowflake_group2"
 
 with DAG(
     DAG_ID,
-    start_date=datetime(2021, 1, 1),
+    start_date=datetime(2023, 1, 1),
     schedule_interval='0 5 * * *',
     default_args={'snowflake_conn_id': SNOWFLAKE_CONN_ID},
     tags=['beaconfire'],
@@ -55,12 +55,6 @@ with DAG(
         database=SNOWFLAKE_DATABASE,
         schema=SNOWFLAKE_SCHEMA,
         role=SNOWFLAKE_ROLE,
-    )
-
-    snowflake_op_sql_multiple_stmts = SnowflakeOperator(
-        task_id='snowflake_op_sql_multiple_stmts',
-        sql=SQL_MULTIPLE_STMTS,
-        split_statements=True,
     )
 
     snowflake_op_template_file = SnowflakeOperator(

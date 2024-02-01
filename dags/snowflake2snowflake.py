@@ -21,7 +21,7 @@ SNOWFLAKE_WAREHOUSE = 'BF_ETL0124'
 SNOWFLAKE_FACT_TABLE = 'FACT_STOCK_G2'
 # SQL commands
 CREATE_TABLE_SQL_STRING = (
-    f"CREATE OR REPLACE TRANSIENT TABLE {SNOWFLAKE_FACT_TABLE}  (
+f"""CREATE OR REPLACE TRANSIENT TABLE {SNOWFLAKE_FACT_TABLE}  (
   symbol varchar(16),
   date  date,
   open float,
@@ -32,7 +32,7 @@ CREATE_TABLE_SQL_STRING = (
   adjclose float,
   FOREIGN KEY (symbol) references  DIM_COMPANY_G2 (symbol),
   FOREIGN KEY (symbol) references  DIM_SYMBOL_G2 (symbol)
-);"
+);"""
 )
 
 

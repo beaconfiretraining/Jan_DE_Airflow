@@ -60,6 +60,10 @@ with DAG(
     snowflake_op_template_file = SnowflakeOperator(
        task_id='snowflake_create_dim_tables',
        sql='snowflake2snowflake.sql',
+       warehouse=SNOWFLAKE_WAREHOUSE,
+       database=SNOWFLAKE_DATABASE,
+       schema=SNOWFLAKE_SCHEMA,
+       role=SNOWFLAKE_ROLE,
        split_statements=True,
     )
 

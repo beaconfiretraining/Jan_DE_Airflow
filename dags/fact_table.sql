@@ -14,3 +14,4 @@ create or replace transient table FACT_STOCK_G2 (
 
 insert into FACT_STOCK_G2 
 values (select concat(symbol,date)as key, * from "US_STOCK_DAILY"."DCCM"."STOCK_HISTORY");
+

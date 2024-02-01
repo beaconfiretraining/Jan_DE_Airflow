@@ -18,8 +18,8 @@ DAG_ID = "group2_project2"
 
 with DAG(
     DAG_ID,
-    start_date=datetime(2023, 1, 1),
-    schedule_interval='0 5 * * *',
+    start_date=datetime(2024, 1, 30),
+    schedule_interval='0 6 * * *', # set to 6AM
     default_args={'snowflake_conn_id': SNOWFLAKE_CONN_ID},
     tags=['beaconfire'],
     catchup=False,
@@ -41,7 +41,6 @@ with DAG(
        database=SNOWFLAKE_DATABASE,
        schema=SNOWFLAKE_SCHEMA,
        role=SNOWFLAKE_ROLE,
-       split_statements=True,
     )
     # create fact table : STOCK_HISTORY 
     # set primary key (symbol,date), set foreign keys (symbol) to DIM_SYMBOL_G2, DIM_COMPANY_G2
@@ -63,7 +62,6 @@ with DAG(
        database=SNOWFLAKE_DATABASE,
        schema=SNOWFLAKE_SCHEMA,
        role=SNOWFLAKE_ROLE,
-       split_statements=True,
     )
 
     # [END howto_operator_snowflake]

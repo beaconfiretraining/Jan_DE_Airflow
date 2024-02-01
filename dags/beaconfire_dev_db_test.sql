@@ -18,7 +18,7 @@
 -- add primary key (ID);
 -- -- foreign key (symbol) references fact_stock_history_group3(symbol);
 
-create or replace table fact_stock_history_test_group3(
+create or replace table fact_stock_history_group3(
     SYMBOL  VARCHAR(16) PRIMARY KEY,
     DATE  DATE,
     OPEN NUMBER(18,8),
@@ -31,3 +31,38 @@ create or replace table fact_stock_history_test_group3(
 insert into fact_stock_history_test_group3
 select *
 from "US_STOCK_DAILY"."DCCM"."STOCK_HISTORY";
+
+create or replace table dim_symbols_group3(
+    SYMBOL  VARCHAR(16) PRIMARY KEY,
+    NAME VARCHAR(256),
+    EXCHANGE VARCHAR(64),
+    foreign key (symbol) references fact_stock_history_group3(symbol)
+);
+insert into dim_symbols_group3
+select *
+from "US_STOCK_DAILY"."DCCM"."SYMBOLS";
+
+create or replace table dim_company_profile_group3(
+    ID NUMBER(38,0)  PRIMARY KEY,
+    SYMBOL  VARCHAR(16),
+    PRICE NUMBER(18,8),
+    BETA NUMBER (18,8),
+    VOLAVG NUMBER(38,0),
+    MKTCAP NUMBER(38,0),
+    LASTDIV NUMBER(18,8),
+    RANGE VARCHAR(64),
+    CHANGES NUMBER(18,8),
+    COMPANYNAME VARCHAR(512),
+    EXCHANGE VARCHAR(64),
+    INDUSTRY VARCHAR(64),
+    WEBSITE VARCHAR(64),
+    DESCRIPTION VARCHAR(2048),
+    CEO VARCHAR(64),
+    SECTOR VARCHAR(64),
+    DCFDIFF NUMBER(18,8),
+    DCF NUMBER(18,8),
+    foreign key (symbol) references fact_stock_history_group3(symbol)
+);
+insert into dim_company_profile_group3
+select *
+from "US_STOCK_DAILY"."DCCM"."COMPANY_PROFILE";

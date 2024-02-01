@@ -51,13 +51,23 @@ with DAG(
         schema=SNOWFLAKE_SCHEMA,
         role=SNOWFLAKE_ROLE,
     )
+
+    snowflake_update_dim = SnowflakeOperator(
+        task_id='snowflake_update_dim',
+        sql="dim_update.sql",
+        warehouse=SNOWFLAKE_WAREHOUSE,
+        database=SNOWFLAKE_DATABASE,
+        schema=SNOWFLAKE_SCHEMA,
+        role=SNOWFLAKE_ROLE,
+    )
     
 
     # [END howto_operator_snowflake]
 
 
     (
-        snowflake_create_1,
+        snowflake_create_1 
+        >> snowflake_update_dim,
         snowflake_create_2
         >> snowflake_insert_2
     )

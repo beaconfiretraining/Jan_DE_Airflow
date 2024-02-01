@@ -44,10 +44,22 @@ with DAG(
         role=SNOWFLAKE_ROLE,
     )
 
+    ###Update dim table
+    snowflake_insert_dim_group1 = SnowflakeOperator(
+       task_id='snowflake_insert_dim_group1',
+       sql='dim_table_insert_date_group1.sql',
+       split_statements=True,
+       warehouse=SNOWFLAKE_WAREHOUSE,
+        database=SNOWFLAKE_DATABASE,
+        schema=SNOWFLAKE_SCHEMA,
+        role=SNOWFLAKE_ROLE,
+    )
+
     # [END howto_operator_snowflake]
 
     (
-            snowflake_insert_fact_group1     
+            snowflake_insert_fact_group1,
+            snowflake_insert_dim_group1
     )
     # [END snowflake_example_dag]
 

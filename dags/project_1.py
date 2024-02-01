@@ -24,7 +24,7 @@ SNOWFLAKE_STAGE = 'S3_STAGE_TRANS_ORDER'
 
 with DAG(
     "s3_to_snowflake_group2_test",
-    start_date=datetime(2022, 11, 28),
+    start_date=datetime(2024, 1, 29),
     schedule_interval='0 6 * * *', # set to 6AM
     default_args={'snowflake_conn_id': SNOWFLAKE_CONN_ID},
     tags=['beaconfire'],
@@ -34,11 +34,9 @@ with DAG(
     copy_into_prestg = S3ToSnowflakeOperator(
         task_id='prestage_product_order_trans_group2', 
         # run this to add previous data
-        # s3_keys=[ 'transactions_group4_20240130.csv' ],
-        # s3_keys=[ 'transactions_group4_20240131.csv' ],
 
         # then run this make the pipeline keep running when new data coming
-        s3_keys=['transactions_group4_{{ ds[0:4]+ds[5:7]+ds[8:10] }}.csv'],
+        s3_keys=['product_order_trans_group2_{{ ds[0:4]+ds[5:7]+ds[8:10] }}.csv'],
 
         table='prestage_product_order_trans_group2', 
         schema=SNOWFLAKE_SCHEMA,

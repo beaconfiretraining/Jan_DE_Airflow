@@ -45,10 +45,10 @@ with DAG(
     # [END howto_operator_snowflake]
 
 
-    (
+    
         
     snowflake_op_template_file
         
-    )
+    
     # [END snowflake_example_dag]
 

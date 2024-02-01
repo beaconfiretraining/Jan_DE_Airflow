@@ -32,13 +32,13 @@ with DAG(
 ) as dag:
 
     copy_into_prestg = S3ToSnowflakeOperator(
-        task_id='prestage_product_order_trans_group2', 
+        task_id='prestage_product_order_group2', 
         # run this to add previous data
 
         # then run this make the pipeline keep running when new data coming
         s3_keys=['product_order_trans_group2_{{ ds[0:4]+ds[5:7]+ds[8:10] }}.csv'],
 
-        table='prestage_product_order_trans_group2', 
+        table='prestage_product_order_group2', 
         schema=SNOWFLAKE_SCHEMA,
         stage=SNOWFLAKE_STAGE,
         file_format='''(type = 'CSV', field_delimiter = ',', SKIP_HEADER = 1 \

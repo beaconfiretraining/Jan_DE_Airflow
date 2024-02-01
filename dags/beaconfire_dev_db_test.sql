@@ -47,8 +47,21 @@ insert into dim_company_profile_group3
 select *
 from "US_STOCK_DAILY"."DCCM"."COMPANY_PROFILE";
 
-alter table  fact_stock_history_group3
-add MODDATE DATE;
 
-INSERT INTO fact_stock_history_group3 (SYMBOL,MODDATE)
-VALUES ('Test', sysdate());
+CREATE or replace TABLE "AIRFLOW0124"."BF_DEV"."SOURCE_STOCK_HISTORY_G3" 
+AS
+SELECT 
+  * 
+FROM "US_STOCK_DAILY"."DCCM"."STOCK_HISTORY";
+
+CREATE or replace TABLE "AIRFLOW0124"."BF_DEV"."SOURCE_SYMBOLS_G3" 
+AS
+SELECT 
+  * 
+FROM "US_STOCK_DAILY"."DCCM"."SYMBOLS";
+
+CREATE or replace TABLE "AIRFLOW0124"."BF_DEV"."SOURCE_COMPANY_PROFILE_G3" 
+AS
+SELECT 
+  * 
+FROM "US_STOCK_DAILY"."DCCM"."COMPANY_PROFILE";

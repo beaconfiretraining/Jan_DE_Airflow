@@ -1,7 +1,7 @@
 MERGE INTO DIM_COMPANY_GROUP1 AS target
 USING (select s.name, p.*
-from “US_STOCK_DAILY”.“DCCM”.“SYMBOLS” s
-join “US_STOCK_DAILY”.“DCCM”.“COMPANY_PROFILE” p
+from US_STOCK_DAILY.DCCM.SYMBOLS s
+join US_STOCK_DAILY.DCCM.COMPANY_PROFILE p
 on s.symbol = p.symbol) AS source
 ON target.SYMBOL = source.SYMBOL
 WHEN MATCHED AND (

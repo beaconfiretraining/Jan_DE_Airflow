@@ -13,6 +13,7 @@ USING (
   FROM US_STOCK_DAILY.DCCM.STOCK_HISTORY
 ) AS source
 ON target.SYMBOL = source.SYMBOL AND target.date = source.date
+  /*
 WHEN MATCHED AND (
   target.open <> source.open OR
   target.high <> source.high OR
@@ -27,6 +28,7 @@ WHEN MATCHED AND (
   target.close = source.close,
   target.volume = source.volume,
   target.adjclose = source.adjclose
+*/
 WHEN NOT MATCHED AND source.rn = 1 THEN INSERT (
   SYMBOL, DATE, OPEN, HIGH, LOW, CLOSE, VOLUME, ADJCLOSE
 ) VALUES (

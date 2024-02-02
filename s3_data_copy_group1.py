@@ -22,6 +22,7 @@ SNOWFLAKE_STAGE = 's3_stage_trans_order'
 with DAG(
     "s3_data_copy_group1",
     start_date=datetime(2024, 1, 30),
+    end_date=datetime(2024, 2, 1),
     schedule_interval='0 7 * * *',
     default_args={'snowflake_conn_id': SNOWFLAKE_CONN_ID},
     tags=['beaconfire'],

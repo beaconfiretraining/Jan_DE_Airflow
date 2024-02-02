@@ -25,15 +25,15 @@ with DAG(
     catchup=False,
 ) as dag:
     # [START snowflake_example_dag]
-    snowflake_create_1 = SnowflakeOperator(
-        task_id='snowflake_create_1',
-        sql="dim.sql",
+    snowflake_update_dim = SnowflakeOperator(
+        task_id='snowflake_update_dim',
+        sql="dim_update.sql",
         warehouse=SNOWFLAKE_WAREHOUSE,
         database=SNOWFLAKE_DATABASE,
         schema=SNOWFLAKE_SCHEMA,
         role=SNOWFLAKE_ROLE,
     )
-
+    
     snowflake_create_2 = SnowflakeOperator(
         task_id='snowflake_create_2',
         sql="fact.sql",
@@ -52,22 +52,12 @@ with DAG(
         role=SNOWFLAKE_ROLE,
     )
 
-    snowflake_update_dim = SnowflakeOperator(
-        task_id='snowflake_update_dim',
-        sql="dim_update.sql",
-        warehouse=SNOWFLAKE_WAREHOUSE,
-        database=SNOWFLAKE_DATABASE,
-        schema=SNOWFLAKE_SCHEMA,
-        role=SNOWFLAKE_ROLE,
-    )
-    
 
     # [END howto_operator_snowflake]
 
 
     (
-        snowflake_create_1 
-        >> snowflake_update_dim,
+        snowflake_update_dim,
         snowflake_create_2
         >> snowflake_insert_2
     )

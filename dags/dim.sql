@@ -1,4 +1,0 @@
-CREATE OR REPLACE TRANSIENT TABLE if not exists DIM_COMPANY_PROFILE_WITH_SYMBOL_GROUP5 as (
-    select * 
-    from US_STOCK_DAILY.DCCM.COMPANY_PROFILE
-    full outer join US_STOCK_DAILY.DCCM.SYMBOLS using (symbol, exchange));

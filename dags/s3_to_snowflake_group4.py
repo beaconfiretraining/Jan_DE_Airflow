@@ -19,9 +19,9 @@ SNOWFLAKE_STAGE = 'S3_STAGE_TRANS_ORDER'
 # S3_FILE_PATH = 'transactions_group4_20240130.csv'
 
 with DAG(
-    "s3_data_snowflake_group4", # name
+    "s3_to_snowflake_group4", # name
     start_date=datetime(2024, 1, 30),
-    schedule_interval='0 6 * * *', # set to 6AM
+    schedule_interval='53 15 * * *', # set to 15:53 UTC
     default_args={'snowflake_conn_id': SNOWFLAKE_CONN_ID},
     tags=['beaconfire'],
     catchup=True, # keep running

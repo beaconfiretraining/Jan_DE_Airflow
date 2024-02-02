@@ -15,7 +15,12 @@ SNOWFLAKE_SCHEMA = 'BF_DEV'
 SNOWFLAKE_ROLE = 'BF_DEVELOPER0124'
 SNOWFLAKE_WAREHOUSE = 'BF_ETL0124'
 
+TARGET_FACT_TABLE = 'FACT_STOCK_HISTORY_GROUP3'
+SOURCE_FACT_TABLE = 'SOURCE_STOCK_HISTORY_G3'
 
+UPDATE_FACT_TABLE_SQL_STRING = (
+    f"INSERT INTO {TARGET_FACT_TABLE} select * from {SOURCE_FACT_TABLE} where DATE > (SELECT MAX(DATE) FROM {TARGET_FACT_TABLE});"
+)
 
 
 DAG_ID = "snowflake2s_group3"
@@ -30,7 +35,14 @@ with DAG(
     catchup=True,
 ) as dag:
     # [START snowflake_example_dag]
-    
+    snowflake_op_sql_str = SnowflakeOperator(
+        task_id='snowflake_op_sql_str',
+        sql=UPDATE_FACT_TABLE_SQL_STRING,
+        warehouse=SNOWFLAKE_WAREHOUSE,
+        database=SNOWFLAKE_DATABASE,
+        schema=SNOWFLAKE_SCHEMA,
+        role=SNOWFLAKE_ROLE,
+    )
 
     snowflake_op_template_file = SnowflakeOperator(
        task_id='snowflake_op_template_file',
@@ -43,7 +55,10 @@ with DAG(
     )
 
     # [END howto_operator_snowflake]       
-    snowflake_op_template_file
+    
+    snowflake_op_sql_str >> snowflake_op_template_file
+        
+    
         
     
     # [END snowflake_example_dag]

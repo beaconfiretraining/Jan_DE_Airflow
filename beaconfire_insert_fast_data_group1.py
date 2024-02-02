@@ -47,7 +47,7 @@ with DAG(
     ###Update dim table
     snowflake_insert_dim_group1 = SnowflakeOperator(
        task_id='snowflake_insert_dim_group1',
-       sql='dim_table_insert_date_group1.sql',
+       sql='dim_table_insert_data_group1.sql',
        split_statements=True,
        warehouse=SNOWFLAKE_WAREHOUSE,
         database=SNOWFLAKE_DATABASE,
